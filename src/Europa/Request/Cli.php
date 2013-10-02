@@ -91,6 +91,10 @@ class Cli extends RequestAbstract implements CliInterface
         $next  = isset($args[$index + 1]) ? $args[$index + 1] : false;
 
         if ($next !== false && $next[0] !== '-') {
+          if ($next[0] === '"') {
+            $next = substr($next, 1, -1);
+          }
+
           $this->setParam($param, $next);
           $skip = true;
         } else {
